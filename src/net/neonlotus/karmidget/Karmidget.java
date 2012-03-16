@@ -1,9 +1,12 @@
 package net.neonlotus.karmidget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.RemoteViews;
 
 public class Karmidget extends AppWidgetProvider
 {
@@ -27,6 +30,9 @@ public class Karmidget extends AppWidgetProvider
 	@Override
 	public void onEnabled(Context context) {
 		super.onEnabled(context);
+		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.widget);
+
+		remoteViews.setTextViewText(R.id.nnaammee, KarmaActivity.uname);
 		//runs when all of the first instance of the widget are placed
 		//on the home screen
 	}
@@ -50,6 +56,30 @@ public class Karmidget extends AppWidgetProvider
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 						 int[] appWidgetIds) {
+		// Get all ids
+		ComponentName thisWidget = new ComponentName(context,
+				KarmaActivity.class);
+		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+		for (int widgetId : allWidgetIds) {
+			// Create some random data
+			//NOint number = (new Random().nextInt(100));
+
+			RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.widget);
+			//Log.w("WidgetExample", String.valueOf(number));
+			// Set the text
+			remoteViews.setTextViewText(R.id.nnaammee, KarmaActivity.uname);
+
+			// Register an onClickListener
+			Intent intent = new Intent(context, Karmidget.class);
+
+			intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+			intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+
+			PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+					0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+			remoteViews.setOnClickPendingIntent(R.id.nnaammee, pendingIntent);
+			appWidgetManager.updateAppWidget(widgetId, remoteViews);
+		}
 		//runs on APPWIDGET_UPDATE
 		//here is the widget content set, and updated
 		//it is called once when the widget created

@@ -26,7 +26,7 @@ import java.io.InputStreamReader;
  */
 
 public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
-	private Context mContext;
+	Context mContext = KarmaActivity.class;
 
 	protected JSONObject doInBackground(String...urls) {
 		return null;//stuff... hmm
@@ -71,16 +71,16 @@ public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
 				}
 			} else {
 				//toastError();
-				toastError(GetUserData.this.getApplicationContext());
+				toastError();
 			}
 		} catch (ClientProtocolException e) {
-			toastError(GetUserData.this.getApplicationContext());
+			toastError();
 			e.printStackTrace();
 		} catch (IOException e) {
-			toastError(GetUserData.this.getApplicationContext());
+			toastError();
 			e.printStackTrace();
 		} catch (JSONException e) {
-			toastError(GetUserData.this.getApplicationContext());
+			toastError();
 			e.printStackTrace();
 		}
 	}
@@ -124,7 +124,7 @@ public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
 //		Toast.makeText(, "Invalid username", Toast.LENGTH_SHORT).show();
 //	}
 	//wat
-	public void toastError (Context mcontext){
+	public void toastError (){
 	    Toast.makeText(mContext, "Connection has been lost", Toast.LENGTH_LONG).show();
 	}
 }
