@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+              android:id="@+id/layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="8dip"
+              android:orientation="vertical"
+              android:background="@drawable/myshape" >
 
     <TextView
-            android:id="@+id/nnaammee"
-            android:layout_width="wrap_content"
+            android:id="@+id/rName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Widget Reddit Tesstit"/>
+            android:gravity="center_horizontal"
+            android:layout_margin="4dip"
+            android:text="Username" >
+    </TextView>
+    <TextView
+            android:id="@+id/rLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="4dip"
+            android:text="Link Karma" >
+    </TextView>
+    <TextView
+            android:id="@+id/rComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_margin="4dip"
+            android:text="Comment Karma" >
+    </TextView>
 
 </LinearLayout>

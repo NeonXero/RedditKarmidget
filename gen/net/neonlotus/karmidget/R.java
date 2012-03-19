@@ -12,12 +12,16 @@ public final class R {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
+        public static final int myshape=0x7f020001;
     }
     public static final class id {
         public static final int comment_text_view=0x7f060002;
         public static final int configdone=0x7f060005;
+        public static final int layout=0x7f060006;
         public static final int link_text_view=0x7f060001;
-        public static final int nnaammee=0x7f060006;
+        public static final int rComment=0x7f060009;
+        public static final int rLink=0x7f060008;
+        public static final int rName=0x7f060007;
         public static final int userEdit=0x7f060004;
         public static final int user_text_view=0x7f060000;
         public static final int userbutton=0x7f060003;
