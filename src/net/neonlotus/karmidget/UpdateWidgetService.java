@@ -9,10 +9,12 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import java.util.Random;
-
 public class UpdateWidgetService extends Service {
 	private static final String LOG = "RedKarm//UpdateService//";
+	//UserObject uo = UserObject.getInstance();
+	String user = KarmaActivity.uname;
+	String comment = KarmaActivity.ckarma;
+	String link = KarmaActivity.lkarma;
 
 	@Override
 	public void onStart(Intent intent, int startId) {
@@ -33,17 +35,17 @@ public class UpdateWidgetService extends Service {
 
 		for (int widgetId : allWidgetIds) {
 			// Create some random data
-			int number = (new Random().nextInt(100));
+			//int number = (new Random().nextInt(100));
 
 			RemoteViews remoteViews = new RemoteViews(this
 					.getApplicationContext().getPackageName(),
 					R.layout.widget);
-			Log.w("WidgetExample", String.valueOf(number));
+			//Log.w("WidgetExample", String.valueOf(number));
 			// Set the text
 			//remoteViews.setTextViewText(R.id.update,"Random: " + String.valueOf(number));
-			remoteViews.setTextViewText(R.id.rName,"User: " + KarmaActivity.uname);
-			remoteViews.setTextViewText(R.id.rLink,"Link: " + KarmaActivity.lkarma);
-			remoteViews.setTextViewText(R.id.rComment,"Comment: " + KarmaActivity.ckarma);
+			remoteViews.setTextViewText(R.id.rName,"User: " + user);
+			remoteViews.setTextViewText(R.id.rLink,"Link: " + comment);
+			remoteViews.setTextViewText(R.id.rComment,"Comment: " + link);
 
 			// Register an onClickListener
 			Intent clickIntent = new Intent(this.getApplicationContext(),
@@ -63,6 +65,8 @@ public class UpdateWidgetService extends Service {
 
 		// super.onStart(intent, startId);
 	}
+
+
 
 	@Override
 	public IBinder onBind(Intent intent) {

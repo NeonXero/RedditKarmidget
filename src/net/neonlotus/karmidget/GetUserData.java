@@ -26,13 +26,61 @@ import java.io.InputStreamReader;
  */
 
 public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
-	Context mContext;
-	
 
+	private Context context;
+	//private ProgressDialog dialog;
+
+
+	public GetUserData(Context context){
+		this.context = context;
+	}
+	/*@Override
+	protected void onPreExecute() {
+		dialog = new ProgressDialog(context);
+		dialog.setMessage("Please wait...");
+		dialog.setIndeterminate(true);
+		dialog.show();
+		super.onPreExecute();
+	}*/
+
+	@Override
+	protected JSONObject doInBackground(String... params) {
+		String input = params[0];
+//some code for background work
+		return null;
+	}
+
+	/*@Override
+	protected void onPostExecute(JSONObject result) {
+		if (dialog.isShowing()) {
+			dialog.dismiss();
+		}
+		super.onPostExecute(result);
+	}*/
+
+
+	/*//test dialog thing
+	private final ProgressDialog dialog = new ProgressDialog(context);
+	//More dialog?
+	protected void onPreExecute() {
+		this.dialog.setMessage("Pulling reddit data");
+		this.dialog.show();
+	}
 
 	protected JSONObject doInBackground(String...urls) {
 		return null;//stuff... hmm
+
 	}
+	//dialog..
+	protected void onPostExecute(final Boolean result) {
+		if (this.dialog.isShowing()) {
+			this.dialog.dismiss();
+		}
+		if (result.booleanValue()) {
+			//also show register success dialog
+		}
+	}*/
+
 
 	//HTTP Connection, from Praeda..
 	public void connect (String url) {
@@ -87,10 +135,6 @@ public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
 		}
 	}
 
-	private Context getApplicationContext() {
-		return null;
-	}
-
 	//Stream to string method NO NEED TO CHANGE THIS
 	private static String convertStreamToString(InputStream is) {
 		//		To convert the InputStream to String we use the BufferedReader.readLine()
@@ -117,14 +161,9 @@ public class GetUserData extends AsyncTask<String, Integer, JSONObject> {
 			}
 		return sb.toString();
 	} //End streamtostring
-	
-	protected void onPostExecute (JSONObject result) { //Might not need this?
-		//showDialog("Downloaded " + result + " bytes"); ... NOPE
-	}
-	
 
 	public void toastError (){
-	    Toast.makeText(mContext, "Connection has been lost", Toast.LENGTH_LONG).show();
+	    Toast.makeText(context, "Connection has been lost", Toast.LENGTH_LONG).show();
 	}
 }
 
